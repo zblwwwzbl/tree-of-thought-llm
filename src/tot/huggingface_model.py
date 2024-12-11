@@ -29,6 +29,7 @@ def huggingface_chat(prompt, model, temperature=0.7, max_tokens=1000, n=1, stop=
         generated_ids = model.generate(
             inputs["input_ids"],
             max_length=100,
+            max_new_tokens=100,
             temperature=temperature,
             do_sample=True,
             num_return_sequences=1,
