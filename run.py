@@ -2,9 +2,9 @@ import os
 import json
 import argparse
 
-from tot.tasks import get_task
-from tot.methods.bfs import solve, naive_solve
-from tot.models import gpt_usage
+from src.tot.tasks import get_task
+from src.tot.methods.bfs import solve, naive_solve
+from src.tot.huggingface_model import init_model
 
 def run(args):
     task = get_task(args.task)
@@ -14,6 +14,7 @@ def run(args):
     else:
         file = f'./logs/{args.task}/{args.backend}_{args.temperature}_{args.method_generate}{args.n_generate_sample}_{args.method_evaluate}{args.n_evaluate_sample}_{args.method_select}{args.n_select_sample}_start{args.task_start_index}_end{args.task_end_index}.json'
     os.makedirs(os.path.dirname(file), exist_ok=True)
+    init_model()
 
     for i in range(args.task_start_index, args.task_end_index):
         # solve
@@ -24,7 +25,7 @@ def run(args):
 
         # log
         infos = [task.test_output(i, y) for y in ys]
-        info.update({'idx': i, 'ys': ys, 'infos': infos, 'usage_so_far': gpt_usage(args.backend)})
+        info.update({'idx': i, 'ys': ys, 'infos': infos})
         logs.append(info)
         with open(file, 'w') as f:
             json.dump(logs, f, indent=4)
@@ -37,7 +38,7 @@ def run(args):
     
     n = args.task_end_index - args.task_start_index
     print(cnt_avg / n, cnt_any / n)
-    print('usage_so_far', gpt_usage(args.backend))
+    # print('usage_so_far', gpt_usage(args.backend))
 
 
 def parse_args():
