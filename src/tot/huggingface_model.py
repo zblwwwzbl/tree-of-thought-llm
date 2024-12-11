@@ -47,7 +47,7 @@ def huggingface_chat(prompt, model, temperature=0.7, max_tokens=1000, n=1, stop=
         outputs.append(output)
     return outputs
 
-def huggingface_gpt(prompt, model, temperature=0.7, max_tokens=1000, n=1, stop=None) -> list:
+def huggingface_gpt(prompt, temperature=0.7, max_tokens=1000, n=1, stop=None) -> list:
     """
     Wrapper function to match the gpt() interface style.
     """
