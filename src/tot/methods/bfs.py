@@ -1,7 +1,7 @@
 import itertools
 import numpy as np
 from functools import partial
-from tot.huggingface_model import huggingface_gpt
+from huggingface_model import huggingface_gpt
 
 def get_value(task, x, y, n_evaluate_sample, cache_value=True):
     value_prompt = task.value_prompt_wrap(x, y)
