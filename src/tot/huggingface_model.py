@@ -36,7 +36,6 @@ def huggingface_chat(prompt, model, temperature=0.7, max_tokens=1000, n=1, stop=
             eos_token_id=tokenizer.eos_token_id
         )
         output = tokenizer.decode(generated_ids[0], skip_special_tokens=True)
-        print(output)
         
         # Handle stopping condition if stop tokens are provided
         if stop:
