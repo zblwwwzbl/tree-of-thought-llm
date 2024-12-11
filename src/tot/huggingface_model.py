@@ -2,7 +2,7 @@ import os
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
-MODEL_NAME = "state-spaces/mamba-130m-hf"
+MODEL_NAME = "state-spaces/mamba-2.8b-hf"
 model = None
 tokenizer = None
 device = None
