@@ -36,6 +36,7 @@ def huggingface_chat(prompt, model, temperature=0.7, max_tokens=1000, n=1, stop=
             eos_token_id=tokenizer.eos_token_id
         )
         output = tokenizer.decode(generated_ids[0], skip_special_tokens=True)
+        print(output)
         
         # Handle stopping condition if stop tokens are provided
         if stop:
@@ -51,6 +52,5 @@ def huggingface_gpt(prompt, temperature=0.7, max_tokens=1000, n=1, stop=None) ->
     """
     Wrapper function to match the gpt() interface style.
     """
-    messages = [{"role": "user", "content": prompt}]
-    return huggingface_chat(messages, model, temperature=temperature, max_tokens=max_tokens, n=n, stop=stop)
+    return huggingface_chat(prompt, model, temperature=temperature, max_tokens=max_tokens, n=n, stop=stop)
 
