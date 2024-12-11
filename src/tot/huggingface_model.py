@@ -2,12 +2,12 @@ import os
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
-MODEL_NAME = "Qwen/Qwen2-Math-1.5B"
+MODEL_NAME = "state-spaces/mamba-130m-hf"
 model = None
 tokenizer = None
 device = None
 
-def init_model(model_name="Qwen/Qwen2-Math-1.5B"):
+def init_model(model_name=MODEL_NAME):
     global model, tokenizer, device
     model = AutoModelForCausalLM.from_pretrained(model_name)
     tokenizer = AutoTokenizer.from_pretrained(model_name)
